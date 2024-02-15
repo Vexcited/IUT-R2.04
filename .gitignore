@@ -1,0 +1,7 @@
+*
+!/**/
+
+!*.c
+!*.md
+!.gitignore
+!.vscode/settings.json
