@@ -65,6 +65,22 @@ int sont_egales (char *str1, char *str2) {
   return *p == *q;
 }
 
+void suppression(char *str, int R, int n) {
+  int curr_l = donner_longueur(str);
+  if ((R >= curr_l) || (R + n >= curr_l)) return;
+
+  char *p = str + R;
+  char *q = str + R + n;
+
+  while (*q != '\0') {
+    *p = *q;
+    p++;
+    q++;
+  }
+
+  *p = '\0';
+}
+
 int main (void) {
   // 0. Réserver deux chaînes de caractères de 81 caractères.
   char str1[81];
@@ -106,6 +122,12 @@ int main (void) {
 
   // 12. Affichage de la deuxième chaîne inversée.
   afficher(str2);
+
+  // 13. Supprime n caractères à partir du rang R
+  // => rang = 2
+  // => n = 3
+  suppression(str1, 2, 3);
+  afficher(str1);
 
   return 0;
 }
