@@ -22,6 +22,11 @@ int main (int argc, char *argv[]) {
    */
   int mode = 0;
 
+  if (argc == 1) {
+    printf("error: no arguments have been passed.\n");
+    return 3;
+  }
+
   // set ourselves on the first argument
   ptr = argv + 1;
   if (ptr == NULL) return 0; // empty
@@ -30,8 +35,15 @@ int main (int argc, char *argv[]) {
   chr = *ptr;
   if (*chr == '\0') return 0; // empty
 
-  // parameter has been set, let's check what it is
+  // parameter has been set
   if (*chr == '-') {
+    // but before, check if there is arguments after the parameter
+    if (argc == 2) {
+      printf("error: no arguments have been passed.\n");
+      return 3;
+    }
+
+    // check if the parameter is valid
     switch (*(chr + 1)) {
       case 'r':
         mode = 1;
@@ -46,14 +58,14 @@ int main (int argc, char *argv[]) {
         mode = -1;
     }
 
-    if (mode == -1) {
-      printf("error: unknown parameter has been passed");
+    if (mode == -1) { // unknown parameter
+      printf("error: unknown parameter has been passed.\n");
       return 1;
     }
 
     // parameter only have one character, so fail if more are given.
     if (*(chr + 2) != '\0') {
-      printf("error: parameter should only have one character.");
+      printf("error: parameter should only have one character.\n");
       return 2;
     }
 
